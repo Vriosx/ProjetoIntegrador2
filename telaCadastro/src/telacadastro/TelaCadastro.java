@@ -5,8 +5,13 @@
 package telacadastro;
 
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.text.MaskFormatter;
 
@@ -19,11 +24,14 @@ public class TelaCadastro extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastro
      */
-    public TelaCadastro() {
-        initComponents();
-       
+    public TelaCadastro() throws ParseException {
         
-    }
+        initComponents();
+
+  }
+        
+    
+               
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +42,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroup = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
@@ -48,15 +57,16 @@ public class TelaCadastro extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
-        txtTelefone = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         lblDataNascimento = new javax.swing.JLabel();
-        txtDataNascimento = new javax.swing.JTextField();
         jcbEstadoCivil = new javax.swing.JComboBox<>();
         jftxtCpf = new javax.swing.JFormattedTextField();
+        jftxtFone = new javax.swing.JFormattedTextField();
+        jftxtDataNascimento1 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela_Cadastro");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setToolTipText("TelaCadastro");
@@ -81,8 +91,10 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         lblEmail.setText("E-mail :");
 
+        btnGroup.add(rbMasculino);
         rbMasculino.setText("Masculino");
 
+        btnGroup.add(rbFeminino);
         rbFeminino.setText("Feminino");
 
         btnCancelar.setText("Cancelar");
@@ -97,8 +109,18 @@ public class TelaCadastro extends javax.swing.JFrame {
                 txtNomeActionPerformed(evt);
             }
         });
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomeKeyTyped(evt);
+            }
+        });
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnConfirmarMousePressed(evt);
+            }
+        });
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
@@ -107,7 +129,45 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         lblDataNascimento.setText("Data de Nascimento:");
 
-        jcbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Casado", "Solteiro", "Divorciado", "Viuvo" }));
+        jcbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro", "Casado", "Divorciado", "Viuvo" }));
+
+        try {
+            jftxtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jftxtCpf.setText(" ");
+        jftxtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jftxtCpfKeyTyped(evt);
+            }
+        });
+
+        try {
+            jftxtFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jftxtFone.setText("    ");
+        jftxtFone.setToolTipText("");
+        jftxtFone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jftxtFoneActionPerformed(evt);
+            }
+        });
+
+        try {
+            jftxtDataNascimento1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jftxtDataNascimento1.setText("");
+        jftxtDataNascimento1.setToolTipText("");
+        jftxtDataNascimento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jftxtDataNascimento1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,12 +201,12 @@ public class TelaCadastro extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(rbFeminino))
                                     .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                                    .addComponent(txtTelefone)
                                     .addComponent(txtEndereco)
-                                    .addComponent(jftxtCpf))))))
+                                    .addComponent(jftxtCpf)
+                                    .addComponent(jftxtFone))))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -155,10 +215,13 @@ public class TelaCadastro extends javax.swing.JFrame {
                             .addComponent(lblEstadoCivil)
                             .addComponent(lblDataNascimento))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(444, 444, 444)
+                    .addComponent(jftxtDataNascimento1)
+                    .addGap(31, 31, 31)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,8 +231,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDataNascimento)
-                    .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDataNascimento))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstadoCivil)
@@ -183,7 +245,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefone)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jftxtFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
@@ -198,6 +260,11 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(45, 45, 45)
+                    .addComponent(jftxtDataNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(293, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,17 +288,86 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
         
-        lblNome.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblNome.setBounds(0,20,75,13);
-        
-        
-        
-        
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
+        
+        String telefone = jftxtFone.getText().replaceAll("[^0-9]", ""); 
+        String cpf = jftxtCpf.getText().replaceAll("[^0-9]", "");  
+        String data = jftxtDataNascimento1.getText().replaceAll("[^0-9]", ""); 
+        if(txtNome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Nome não pode estar em branco!");
+            return;
+        }
+        else if (txtEndereco.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Endereço não pode estar em branco!");
+            return;
+        }
+        else if (cpf.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "CPF não pode estar em branco!");
+            return;
+        }
+        else if (telefone.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Telefone não pode estar em branco!");
+            return;
+        }
+        else if (txtEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Email não pode estar em branco!");
+            return;
+        }else if(!txtEmail.getText().contains("@")){
+            JOptionPane.showMessageDialog(rootPane, "Email inválido!");
+            return;
+        }
+        else if (btnGroup.getSelection() == null) {
+            JOptionPane.showMessageDialog(rootPane, "O Gênero deve ser indenticado.");
+            return;
+        }
+        else if(data.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Digite a data!");
+            return;
+        }else 
+            JOptionPane.showMessageDialog(rootPane, "Cadastro Concluido!");
+            if (evt.getSource() == btnConfirmar) {
+                try {
+                    TelaConsultaCliente telaConsultaC = new TelaConsultaCliente();
+                    telaConsultaC.setVisible(true);
+                    this.dispose();                
+                } catch (Exception e) {
+                }
+        }
+           
+        
+
+        
+        
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
+        // TODO add your handling code here:
+       char c = evt.getKeyChar();
+        if (!(Character.isLetter(c) || (c == KeyEvent.VK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+        evt.consume();
+    }
+    }//GEN-LAST:event_txtNomeKeyTyped
+
+    private void jftxtCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftxtCpfKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jftxtCpfKeyTyped
+
+    private void jftxtFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftxtFoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jftxtFoneActionPerformed
+
+    private void jftxtDataNascimento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftxtDataNascimento1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jftxtDataNascimento1ActionPerformed
+
+    private void btnConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMousePressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_btnConfirmarMousePressed
 
     /**
      * @param args the command line arguments
@@ -263,7 +399,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastro().setVisible(true);
+                try {
+                    new TelaCadastro().setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -271,10 +411,13 @@ public class TelaCadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> jcbEstadoCivil;
     private javax.swing.JFormattedTextField jftxtCpf;
+    private javax.swing.JFormattedTextField jftxtDataNascimento1;
+    private javax.swing.JFormattedTextField jftxtFone;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblDataNascimento;
     private javax.swing.JLabel lblEmail;
@@ -285,10 +428,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JRadioButton rbFeminino;
     private javax.swing.JRadioButton rbMasculino;
-    private javax.swing.JTextField txtDataNascimento;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

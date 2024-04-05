@@ -4,6 +4,10 @@
  */
 package telacadastro;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author vitor.grcosta
@@ -70,6 +74,16 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
 
         btnInserir.setText("Inserir");
+        btnInserir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnInserirMousePressed(evt);
+            }
+        });
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
 
@@ -188,6 +202,25 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        // TODO add your handling code here:
+          if (evt.getSource() == btnInserir) {
+              try {
+                  TelaCadastro telaCadastro = new TelaCadastro();
+                  telaCadastro.setVisible(true);
+              } catch (ParseException ex) {
+                  Logger.getLogger(TelaConsultaCliente.class.getName()).log(Level.SEVERE, null, ex);
+              }
+        }
+        
+    }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnInserirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirMousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnInserirMousePressed
+
+    
     /**
      * @param args the command line arguments
      */
