@@ -98,6 +98,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         rbFeminino.setText("Feminino");
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+        });
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -368,6 +373,16 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_btnConfirmarMousePressed
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        // TODO add your handling code here:
+        
+        if (evt.getSource() == btnCancelar) {
+            TelaConsultaCliente consultaCliente = new TelaConsultaCliente();
+            consultaCliente.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
     /**
      * @param args the command line arguments
