@@ -43,6 +43,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void initComponents() {
 
         btnGroup = new javax.swing.ButtonGroup();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
@@ -122,6 +123,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfirmarMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnConfirmarMousePressed(evt);
             }
@@ -377,12 +381,24 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         // TODO add your handling code here:
         
-        if (evt.getSource() == btnCancelar) {
-            TelaConsultaCliente consultaCliente = new TelaConsultaCliente();
-            consultaCliente.setVisible(true);
-            this.dispose();
-        }
+           if (evt.getSource() == btnCancelar) {
+                 int result = JOptionPane.showOptionDialog(rootPane, "Deseja realmente cancelar?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Sim", "Não"}, "Não");
+           if (result == JOptionPane.YES_OPTION) {
+                TelaConsultaCliente consultaCliente = new TelaConsultaCliente();
+                consultaCliente.setVisible(true);
+                this.dispose();
+    } else {
+        
+    }
+}
+        
+
     }//GEN-LAST:event_btnCancelarMouseClicked
+
+    private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_btnConfirmarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -429,6 +445,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcbEstadoCivil;
     private javax.swing.JFormattedTextField jftxtCpf;
     private javax.swing.JFormattedTextField jftxtDataNascimento1;

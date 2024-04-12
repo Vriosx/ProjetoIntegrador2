@@ -4,6 +4,7 @@
  */
 package telacadastro;
 
+import Estudos.TelaVendas;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,6 +62,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         btnVenda.setText("Venda");
         btnVenda.setToolTipText("");
+        btnVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVendaMouseClicked(evt);
+            }
+        });
 
         btnProdutos.setText("Produtos");
         btnProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -150,6 +156,15 @@ public class TelaInicial extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnProdutosMouseClicked
+
+    private void btnVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendaMouseClicked
+        // TODO add your handling code here:
+        if (evt.getSource() == btnVenda) {
+            TelaVendas telaVenda = new TelaVendas();
+            telaVenda.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnVendaMouseClicked
 
     /**
      * @param args the command line arguments
