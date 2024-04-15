@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package telacadastro;
+package modelosPdv.views;
 
-import telacadastro.RelatorioSintetico;
+import modelosPdv.views.Relatorios;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -209,7 +209,7 @@ public class TelaInicial extends javax.swing.JFrame {
             recebe = JOptionPane.showInputDialog("Digite o codigo para sair");
          }if (recebe.equalsIgnoreCase(code)) {
             this.dispose();
-        }else JOptionPane.showMessageDialog(rootPane, "Código Errado.");
+        }else JOptionPane.showMessageDialog(rootPane, "Código Incorreto.");
             
         
     }//GEN-LAST:event_btnSairMouseClicked
@@ -221,7 +221,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
         // TODO add your handling code here:
             if (evt.getSource() == btnRelatorios) {
-             RelatorioSintetico sintetico = new RelatorioSintetico();
+             Relatorios sintetico = new Relatorios();
             sintetico.setVisible(true);
             this.dispose();
         }

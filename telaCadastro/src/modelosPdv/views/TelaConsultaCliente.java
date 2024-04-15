@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package telacadastro;
+package modelosPdv.views;
 
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -249,7 +249,7 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
           if (evt.getSource() == btnInserir) {
               try {
-                  TelaCadastro telaCadastro = new TelaCadastro();
+                  TelaCadastroCliente telaCadastro = new TelaCadastroCliente();
                   telaCadastro.setVisible(true);
               } catch (ParseException ex) {
                   Logger.getLogger(TelaConsultaCliente.class.getName()).log(Level.SEVERE, null, ex);

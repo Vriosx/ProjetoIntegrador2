@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package telacadastro;
+package modelosPdv.views;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -19,12 +19,12 @@ import javax.swing.text.MaskFormatter;
  *
  * @author vitor.grcosta
  */
-public class TelaCadastro extends javax.swing.JFrame {
+public class TelaCadastroCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaCadastro
      */
-    public TelaCadastro() throws ParseException {
+    public TelaCadastroCliente() throws ParseException {
         
         initComponents();
 
@@ -213,7 +213,6 @@ public class TelaCadastro extends javax.swing.JFrame {
                                     .addComponent(txtEndereco)
                                     .addComponent(jftxtCpf)
                                     .addComponent(jftxtFone))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 27, Short.MAX_VALUE)
@@ -408,23 +407,24 @@ public class TelaCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new TelaCadastro().setVisible(true);
+                    new TelaCadastroCliente().setVisible(true);
                 } catch (ParseException ex) {
-                    Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

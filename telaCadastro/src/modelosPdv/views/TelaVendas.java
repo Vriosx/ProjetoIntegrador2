@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package telacadastro;
+package modelosPdv.views;
 
 import javax.swing.JOptionPane;
-import telacadastro.TelaConsultaCliente;
-import telacadastro.TelaInicial;
+import modelosPdv.views.TelaConsultaCliente;
+import modelosPdv.views.TelaInicial;
 
 /**
  *
