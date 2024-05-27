@@ -353,10 +353,7 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirMouseClicked
 
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
-        // TODO add your handling code here:
-        if (evt.getSource() == btnConfirmar) {
-            JOptionPane.showMessageDialog(rootPane, "Confirmado!");
-        }
+
     }//GEN-LAST:event_btnConfirmarMouseClicked
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
@@ -378,7 +375,7 @@ public class TelaVendas extends javax.swing.JFrame {
 
             valorTotal += valorLinha;
 
-            lblValorTotal.setText(String.valueOf(valorTotal));
+            lblValorTotal.setText(String.format("%.2f", valorTotal));
         }
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
@@ -414,14 +411,18 @@ public class TelaVendas extends javax.swing.JFrame {
             for (int i = 0; i < modelo.getRowCount(); i++) {
                 int idProduto = Integer.parseInt(modelo.getValueAt(i, 0).toString());
                 int qtdProduto = Integer.parseInt(modelo.getValueAt(i, 2).toString());
-                double vlrUnitario = Double.parseDouble(modelo.getValueAt(i, 3).toString());
+
+               
+                double vlrUnitario = Double.parseDouble(modelo.getValueAt(i, 3).toString().replace(",", "."));
 
                 ItemVenda novoItem = new ItemVenda(idProduto, qtdProduto, vlrUnitario);
                 listaItens.add(novoItem);
             }
 
             Vendas objVenda = new Vendas();
-            objVenda.setValorVenda((float) Double.parseDouble(lblValorTotal.getText()));
+
+            
+            objVenda.setValorVenda((float) Double.parseDouble(lblValorTotal.getText().replace(",", ".")));
             objVenda.setDataVenda(new Date());
             objVenda.setIdCliente(objRetorno.getIdCliente());
             objVenda.setListaItens(listaItens);
@@ -441,28 +442,27 @@ public class TelaVendas extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
         int linhaSelecionada = tblVenda.getSelectedRow();
-    if (linhaSelecionada >= 0) {
-    DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
+        if (linhaSelecionada >= 0) {
+            DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
 
+            int idVenda = Integer.parseInt(model.getValueAt(linhaSelecionada, 0).toString());
 
-    int idVenda = Integer.parseInt(model.getValueAt(linhaSelecionada, 0).toString());
+            model.removeRow(linhaSelecionada);
 
-    model.removeRow(linhaSelecionada);
+            float valorLinha = Float.parseFloat(model.getValueAt(linhaSelecionada, 4).toString());
+            valorTotal -= valorLinha;
+            lblValorTotal.setText(String.format("%.2f", valorTotal));
 
-    float valorLinha = Float.parseFloat(model.getValueAt(linhaSelecionada, 4).toString());
-    valorTotal -= valorLinha;
-    lblValorTotal.setText(String.format("%.2f", valorTotal)); 
+            boolean isDeleted = VendaDAO.excluir(idVenda);
+            if (isDeleted) {
+                JOptionPane.showMessageDialog(rootPane, "Item de venda excluído com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Falha ao excluir item de venda.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma linha para excluir.");
+        }
 
-    boolean isDeleted = VendaDAO.excluir(idVenda);
-    if (isDeleted) {
-        JOptionPane.showMessageDialog(rootPane, "Item de venda excluído com sucesso!");
-    } else {
-        JOptionPane.showMessageDialog(rootPane, "Falha ao excluir item de venda.");
-    }
-} else {
-    JOptionPane.showMessageDialog(rootPane, "Selecione uma linha para excluir.");
-}
-        
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**

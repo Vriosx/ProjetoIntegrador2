@@ -285,6 +285,8 @@ public class Relatorios extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblRelatorioSintetico.getModel();
         modelo.setRowCount(0);
 
+        double valorTotalVendas = 0.0;  
+
         for (RelatorioSintetico item : lista) {
             modelo.addRow(new String[]{
                 String.valueOf(item.getIdVenda()),
@@ -292,7 +294,11 @@ public class Relatorios extends javax.swing.JFrame {
                 item.getNomeCliente(),
                 String.valueOf(item.getValorVenda())
             });
+
+            valorTotalVendas += item.getValorVenda();  
         }
+
+        lblValorTotalPeriodo.setText(String.format("%.2f", valorTotalVendas));
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalhesActionPerformed

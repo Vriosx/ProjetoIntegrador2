@@ -46,8 +46,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
         lblTelaInicial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTelaInicial.setText("Tela Inicial");
-        lblTelaInicial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblTelaInicial.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/4850490_clients_communication_discussion_media_social_icon (2).png"))); // NOI18N
         btnClientes.setText("Clientes");
         btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -60,6 +61,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/9043057_reports_icon.png"))); // NOI18N
         btnRelatorios.setText("Relatórios");
         btnRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -72,6 +74,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/4619651_buy_cart_sell_shopping_trolley_icon.png"))); // NOI18N
         btnVenda.setText("Venda");
         btnVenda.setToolTipText("");
         btnVenda.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,6 +83,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/4172394_goods_merchandise_stock_supply_vendibles_icon.png"))); // NOI18N
         btnProdutos.setText("Produtos");
         btnProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,7 +125,7 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                                 .addComponent(btnSair))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
