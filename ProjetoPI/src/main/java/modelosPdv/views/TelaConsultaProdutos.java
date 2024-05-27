@@ -69,6 +69,11 @@ public class TelaConsultaProdutos extends javax.swing.JFrame {
                 btnCancelarMouseClicked(evt);
             }
         });
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         tblComponentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -291,6 +296,13 @@ public class TelaConsultaProdutos extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

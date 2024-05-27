@@ -92,6 +92,12 @@ public class Produtos {
     public void setPrecoCompra(double precoCompra) {
         this.precoCompra = precoCompra;
     }
+
+    @Override
+    public String toString() {
+        return this.nomeProduto;
+    }
+    
     
 
 }

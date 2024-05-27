@@ -1,3 +1,5 @@
+drop database supermercado;
+
 create database superMercado;
 
 use superMercado;
@@ -19,14 +21,34 @@ drop table cliente;
 select * from cliente;
 
 create table produtos (
-id int not null auto_increment,
+idProduto int not null auto_increment,
 nomeProduto varchar (70) not null,
 precoVenda double not null,
 precoCompra double not null,
 fornecedor varchar (60) not null,
 quant int not null,
-primary key (id)
+primary key (idProduto)
 );
 
 select * from  produtos;
 
+
+CREATE TABLE vendas(
+idVenda int NOT NULL AUTO_INCREMENT,
+DATAvENDA Date NOT NULL,
+valorVenda FLOAT NOT NULL,
+idCliente INT NOT NULL,
+PRIMARY KEY (idVenda)
+);
+
+CREATE TABLE ItemVenda(
+idItemVenda INT NOT NULL AUTO_INCREMENT,
+idVenda INT NOT NULL,
+idProduto INT NOT NULL,
+qtdProduto INT NOT NULL,
+vlrUnitario FLOAT NOT NULL,
+
+PRIMARY KEY (idItemVenda),
+FOREIGN KEY (idVenda) REFERENCES vendas(idVenda),
+FOREIGN KEY (idProduto) REFERENCES produtos(idProduto)
+);

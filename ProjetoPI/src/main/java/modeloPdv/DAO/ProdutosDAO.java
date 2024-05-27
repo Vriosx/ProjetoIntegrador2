@@ -14,7 +14,7 @@ public class ProdutosDAO {
 
     public static String URL = "jdbc:mysql://localhost:3306/superMercado";
     public static String login = "root";
-    public static String senha = "";
+    public static String senha = "7423";
 
     public static boolean salvar(Produtos p) {
         boolean sucesso = false;
@@ -52,7 +52,7 @@ public class ProdutosDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(URL, login, senha);
             PreparedStatement comandoSQL = conexao.prepareStatement(
-                    "UPDATE produtos SET nomeProduto=?, quant=?, precoVenda=?, fornecedor=?, precoCompra=? WHERE id=?");
+                    "UPDATE produtos SET nomeProduto=?, quant=?, precoVenda=?, fornecedor=?, precoCompra=? WHERE idProduto=?");
             comandoSQL.setString(1, a.getNomeProduto());
             comandoSQL.setInt(2, a.getQuant());
             comandoSQL.setDouble(3, a.getPrecoVenda());
@@ -84,7 +84,7 @@ public class ProdutosDAO {
 
             conexao = DriverManager.getConnection(URL, login, senha);
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM produtos WHERE id = ?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM produtos WHERE idProduto = ?");
 
             comandoSQL.setInt(1, idExcluir);
 
@@ -127,7 +127,7 @@ public class ProdutosDAO {
 
             while (rs.next()) {
                 Produtos item = new Produtos(
-                        rs.getInt("id"),
+                        rs.getInt("idProduto"),
                         rs.getString("nomeProduto"),
                         rs.getInt("precoVenda"),
                         rs.getDouble("precoCompra"),
@@ -166,16 +166,16 @@ public class ProdutosDAO {
 
             conexao = DriverManager.getConnection(URL, login, senha);
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT id, nomeProduto, precoVenda, precoCompra, fornecedor, quant FROM produtos WHERE nomeProduto = ?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idProduto, nomeProduto, precoVenda, precoCompra, fornecedor, quant FROM produtos WHERE nomeProduto = ?");
 
             comandoSQL.setString(1, nomeProduto);
-//           
+          
             ResultSet rs = comandoSQL.executeQuery();
 
             while (rs.next()) {
 
                 Produtos item = new Produtos(
-                        rs.getInt("id"),
+                        rs.getInt("idProduto"),
                         rs.getString("nomeProduto"),
                         rs.getInt("precoVenda"),
                         rs.getDouble("precoCompra"),
